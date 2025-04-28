@@ -1,6 +1,30 @@
+import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function LoginPage() {
+  const { isAuthenticated, login } = useAuth();
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/");
+    }
+  }, [isAuthenticated, router]);
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Aquí en el futuro puedes agregar validaciones más reales
+    if (email.trim() !== "" && password.trim() !== "") {
+      login();
+    } else {
+      alert("Please fill in all fields!");
+    }
+  };
+
   return (
     <div className='min-h-screen flex flex-col md:flex-row bg-black'>
       {/* Left Side (Image and Slogan) */}
@@ -37,7 +61,7 @@ export default function LoginPage() {
           <h2 className='text-2xl font-bold text-center mb-6 text-white'>
             Welcome Back
           </h2>
-          <form className='space-y-4'>
+          <form className='space-y-4' onSubmit={handleLogin}>
             <div>
               <label className='block text-sm font-semibold text-gray-300 mb-1'>
                 Email
@@ -45,6 +69,8 @@ export default function LoginPage() {
               <input
                 type='email'
                 placeholder='Email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className='w-full border border-gray-600 bg-gray-900 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-700'
                 required
               />
@@ -56,6 +82,8 @@ export default function LoginPage() {
               <input
                 type='password'
                 placeholder='Password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 className='w-full border border-gray-600 bg-gray-900 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-purple-700'
                 required
               />

@@ -11,7 +11,7 @@ export function AuthProvider({ children }) {
 
   const login = () => {
     setIsAuthenticated(true);
-    router.push("/");
+    router.push("/dashboard");
   };
 
   const logout = () => {
