@@ -27,11 +27,11 @@ export default function LoginPage() {
         <div className='w-full max-w-md bg-gray-800 p-8 rounded-lg shadow-lg'>
           <div className='flex justify-center mb-6'>
             <Image
-              src='/logo.png'
-              width={300}
-              height={300}
+              src='/logo.svg'
+              width={500}
+              height={500}
               alt='Logo'
-              className='h-10'
+              className='h-20'
             />
           </div>
           <h2 className='text-2xl font-bold text-center mb-6 text-white'>
@@ -83,8 +83,8 @@ export default function LoginPage() {
           <div className='flex justify-center gap-4 mt-6'>
             <a href='#'>
               <Image
-                src='/google.svg'
-                alt='Google'
+                src='/discord.svg'
+                alt='Discord'
                 width={300}
                 height={300}
                 className='h-8 w-8 hover:scale-110 transition'
@@ -92,8 +92,8 @@ export default function LoginPage() {
             </a>
             <a href='#'>
               <Image
-                src='/github.svg'
-                alt='GitHub'
+                src='/x.svg'
+                alt='x'
                 width={300}
                 height={300}
                 className='h-8 w-8 hover:scale-110 transition'
@@ -101,8 +101,8 @@ export default function LoginPage() {
             </a>
             <a href='#'>
               <Image
-                src='/facebook.svg'
-                alt='Facebook'
+                src='/email.svg'
+                alt='Email'
                 width={300}
                 height={300}
                 className='h-8 w-8 hover:scale-110 transition'
