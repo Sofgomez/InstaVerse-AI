@@ -1,25 +1,32 @@
 import { useAuth } from "@/context/AuthContext";
+import { useWorld } from "@/context/WorldContext";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function LoginPage() {
   const { isAuthenticated, login } = useAuth();
+  const { universe, character } = useWorld();
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push("/");
+      if (!universe) {
+        router.push("/universe-selection");
+      } else if (!character) {
+        router.push("/character-selection");
+      } else {
+        router.push("/dashboard");
+      }
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, universe, character, router]);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Aquí en el futuro puedes agregar validaciones más reales
     if (email.trim() !== "" && password.trim() !== "") {
-      login();
+      login(); // Solo activa isAuthenticated true
     } else {
       alert("Please fill in all fields!");
     }
